@@ -1,3 +1,6 @@
+var xMark = "./marks/xMark.png";
+var yMark = "./marks/yMark.png";
+
 var points = new Array(9);
 for(let i = 0; i < 9; i++) {
     points[i] = 0;
@@ -12,11 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
             counter++;
 
             if(counter % 2 == 0) {
-                this.style.backgroundColor = "red";
+                this.style.background = `url(${xMark}) center no-repeat`;
                 points[i] = 1;
                 this.removeEventListener("click", changeTile);
             } else {
-                this.style.backgroundColor = "blue";
+                this.style.background = `url(${yMark}) center no-repeat`;
                 points[i] = -1;
                 this.removeEventListener("click", changeTile);
             }
@@ -76,14 +79,23 @@ function tie() {
     freezeClic = true;
 }
 
+function resetGame() {
+    location.reload();
+}
+
 function playerWon(x) {
+    const resetBtn = document.createElement("button");
+    const resetText = document.createTextNode("Reset Game");
+    resetBtn.appendChild(resetText);
+    document.getElementById("resetBtn").appendChild(resetBtn);  
     document.getElementById("res").textContent = "Player " + x + " has won the game";
+    resetBtn.addEventListener("click", () => resetGame());
     freezeClic = true;
 }
 
 var freezeClic = false;
-
-document.addEventListener("click", e => {
+var gameField = document.getElementById("game");
+gameField.addEventListener("click", e => {
     if (freezeClic) {
         e.stopPropagation();
         e.preventDefault();
