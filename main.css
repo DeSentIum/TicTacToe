@@ -1,0 +1,16 @@
+body {
+    background-color: #333030;
+}
+.game {
+    display: grid;
+    width: 30vw;
+    height: 50vh;
+    margin: 25vh auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.field {
+    border: 3px solid #efefef;
+    background-color: currentColor;
+}
